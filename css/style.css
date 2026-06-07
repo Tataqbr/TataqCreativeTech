@@ -1,0 +1,92 @@
+/* ==========================================================================
+   TATAQ CREATIVE TECH - PREMIUM CUSTOM STYLESHEET
+   ========================================================================== */
+
+/* 1. SETUP GLOBAL & FONT SMOOTHING */
+body {
+    font-family: 'Inter', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. LOGIKA UTAMA SCROLL REVEAL ANIMATION */
+/* Kondisi awal sebelum elemen terlihat (saat scroll belum sampai) */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+/* Kondisi setelah elemen masuk ke area layar (dipicu oleh JS) */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efek jeda (Stagger) opsional jika Anda ingin elemen muncul bergantian */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+
+/* 3. KUSTOMISASI SCROLLBAR PREMIUM (Light & Dark Mode) */
+/* Untuk Browser berbasis Webkit (Chrome, Safari, Edge, Opera) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* Track / Latar belakang scrollbar */
+::-webkit-scrollbar-track {
+    background: #f1f5f9; /* bg-slate-100 */
+}
+.dark ::-webkit-scrollbar-track {
+    background: #0f172a; /* bg-slate-900 */
+}
+
+/* Thumb / Batang scrollbar yang bergeser */
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1; /* slate-300 */
+    border-radius: 10px;
+    border: 2px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; /* slate-400 */
+}
+
+/* Thumb saat Dark Mode aktif */
+.dark ::-webkit-scrollbar-thumb {
+    background: #334155; /* slate-700 */
+    border: 2px solid #0f172a;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #475569; /* slate-600 */
+}
+
+/* Kustomisasi Scrollbar untuk Browser Firefox */
+@supports (scrollbar-color: auto) {
+    html {
+        scrollbar-color: #cbd5e1 #f1f5f9;
+        scrollbar-width: thin;
+    }
+    html.dark {
+        scrollbar-color: #334155 #0f172a;
+    }
+}
+
+
+/* 4. TRANSISI HALUS SELEKSI TEKS */
+::selection {
+    background-color: #4f46e5; /* indigo-600 */
+    color: #ffffff;
+}
+
+
+/* 5. FIX TRANSISI DARK MODE (Mencegah Efek Kedipan Kasar) */
+/* Menambahkan transisi halus pada latar belakang saat tombol tema diklik */
+html, body, header, section, footer, card {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
